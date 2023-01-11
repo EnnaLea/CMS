@@ -1,24 +1,30 @@
 <?php 
 if (isset($_POST['create_user'])) {
-    $user_id = $_POST['user_id'];
+ 
     $username = $_POST['username'];
     $user_password = $_POST['user_password'];
-    $post_status = $_POST['user_firstname'];
-    $post_image = $_FILES['image']['name'];
-    $post_image_temp = $_FILES['image']['tmp_name'];
-    $post_tags = $_POST['post_tags'];
-    $post_content = $_POST['post_content'];
-    $post_date = date('d-m-y');
+    $user_firstname = $_POST['user_firstname'];
+    $user_lastname = $_POST['user_lastname'];
 
-    move_uploaded_file($post_image_temp, "../images/$post_image");
+    // $post_image = $_FILES['image']['name'];
+    // $post_image_temp = $_FILES['image']['tmp_name'];
 
-    $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) ";
+    $user_email = $_POST['user_email'];
+    $user_role = $_POST['user_role'];
 
-    $query .= "VALUES('{$post_category_id}', '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_status}') ";
+    // $post_date = date('d-m-y');
 
-    $create_post_query = mysqli_query($connection, $query);
+    // move_uploaded_file($post_image_temp, "../images/$post_image");
 
-    confirm($create_post_query);
+    $query = "INSERT INTO users(username, user_password, user_firstname, user_lastname, user_email, user_role) ";
+
+    $query .= 
+"VALUES('{$username }', '{$user_password}','{$user_firstname}', '{$user_lastname}', '{$user_email}', '{$user_role}') ";
+
+    $create_user_query = mysqli_query($connection, $query);
+
+    confirm($create_user_query);
+    header("Location: users.php");
 
 
 }
@@ -29,12 +35,12 @@ if (isset($_POST['create_user'])) {
 <form action="" method="post" enctype="multipart/form-data">
 
 <div class="form-group">
-<label for="post_title">Firstname</label>
+<label for="user_firstname">Firstname</label>
 <input type="text" class="form-control" name="user_firstname">
 </div>
 
 <div class="form-group">
-<label for="post_title">Lastname</label>
+<label for="user_lastname">Lastname</label>
 <input type="text" class="form-control" name="user_lastname">
 </div>
 
@@ -53,17 +59,17 @@ if (isset($_POST['create_user'])) {
 </div> -->
 
 <div class="form-group">
-<label for="post_status">Username</label>
+<label for="username">Username</label>
 <input type="text" class="form-control" name="username">
 </div>
 
 <div class="form-group">
-<label for="post_autor">Email</label>
+<label for="user_email">Email</label>
 <input type="email" class="form-control" name="user_email">
 </div>
 
 <div class="form-group">
-<label for="image">Password</label>
+<label for="user_password">Password</label>
 <input type="password" class="form-control" name="user_password">
 </div>
 
