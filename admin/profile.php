@@ -1,25 +1,38 @@
+<?php include "includes-amin/header_admin.php" ?>
+
 <?php
 
-if (isset($_GET['edit_user'])) {
-    $the_user_id = $_GET['edit_user'];
+if (isset($_SESSION['username'])) {
 
-    $query = "SELECT * FROM users WHERE user_id = $the_user_id";
-    $select_users_query = mysqli_query($connection, $query);
+    $username = $_SESSION['username'];
 
-    while ($row = mysqli_fetch_assoc($select_users_query)) {
-        $user_id = $row['user_id'];
-        $username = $row['username'];
-        $user_password = $row['user_password'];
-        $user_firstname = $row['user_firstname'];
-        $user_lastname = $row['user_lastname'];
-        $user_email = $row['user_email'];
-        $user_image = $row['user_image'];
-        $user_role = $row['user_role'];
+    $query = "SELECT * FROM users WHERE username = '{$username}' ";
+
+    $select_user_profile_query = mysqli_query($connection, $query);
+
+    while ($row = mysqli_fetch_array($select_user_profile_query) ) {
+    
+    $user_id = $row['user_id'];
+    $username = $row['username'];
+    $user_password = $row['user_password'];
+    $user_firstname = $row['user_firstname'];
+    $user_lastname = $row['user_lastname'];
+    $user_email = $row['user_email'];
+    $user_role = $row['user_role'];
+
     }
+
+
 
 }
 
-if (isset($_POST['edit_user'])) {
+?>
+
+<?php 
+
+if (isset($_POST['profile'])) {
+
+    $user_profile = $username;
  
     $username = $_POST['username'];
     $user_password = $_POST['user_password'];
@@ -36,8 +49,6 @@ if (isset($_POST['edit_user'])) {
 
     // move_uploaded_file($post_image_temp, "../images/$post_image");
 
-
-
     $query = "UPDATE users SET ";
     $query .= "username = '{$username}', ";
     $query .= "user_password = '{$user_password}', ";
@@ -45,17 +56,35 @@ if (isset($_POST['edit_user'])) {
     $query .= "user_lastname = '{$user_lastname}', ";
     $query .= "user_email = '{$user_email}', ";
     $query .= "user_role = '{$user_role}'  ";
-    $query .= " WHERE user_id = {$the_user_id}";
+    $query .= " WHERE username = '{$user_profile}'";
 
-    $edit_user_query = mysqli_query($connection, $query);
+    $edit_user_profile_query = mysqli_query($connection, $query);
 
-    confirm( $edit_user_query);
-    header("Location: users.php");
+    confirm( $edit_user_profile_query);
+    
 
 }
 
 ?>
 
+
+    <div id="wrapper">
+
+    <!-- Navigation -->
+<?php include "includes-amin/navigation_admin.php" ?>
+        
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <h1 class="page-header">
+                            Welcome to the Admin Page
+                            <small>Author</small>
+                        </h1>
 
 <form action="" method="post" enctype="multipart/form-data">
 
@@ -109,9 +138,19 @@ if($user_role == 'admin'){
 </div>
 
 <div class="form-group">
-<input type="submit" class="btn btn-primary" name="edit_user" value="Edit User">
+<input type="submit" class="btn btn-primary" name="profile" value="Update Profile">
 </div>
 
 
 
-</form>
+</form>                       
+                       
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+
+<?php include "includes-amin/footer_admin.php" ?>
