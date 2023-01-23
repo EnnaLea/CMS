@@ -27,9 +27,9 @@
                 $post_content =  substr($row['post_content'],0,100);
                 $post_status = $row['post_status'];
 
-                if($post_status !== 'published'){
-                    echo "<h1 class='text-center'> NO POST HERE :( </h1>";
-                } else {
+                if($post_status == 'published'){
+
+                
               
                    ?>
 
@@ -50,7 +50,6 @@
                 <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
                 <hr>
                 <p><?php echo $post_content; ?></p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                 <hr>
 
