@@ -85,8 +85,8 @@ while ($row = mysqli_fetch_assoc($select_categories)) {
 </div>
 
 <div class="form-group">
-<label for="post_content">Post Content</label>
-<textarea name="post_content" class="form-control" id="" cols="30" rows="10"></textarea>
+<label for="summernote">Post Content</label>
+<textarea name="post_content" class="form-control" id="summernote" cols="30" rows="10"></textarea>
 </div>
 
 <div class="form-group">
