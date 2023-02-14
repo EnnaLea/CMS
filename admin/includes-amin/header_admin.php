@@ -7,9 +7,8 @@
 <?php
 if (!isset($_SESSION['user_role'])) {
 
-        header("Location: ../index.php");
-
-} 
+    header("Location: ../index.php");
+}
 // else {
 //     if($_SESSION['user_role'] !== 'admin'){
 //         header("Location: ../index.php");
@@ -36,9 +35,9 @@ if (!isset($_SESSION['user_role'])) {
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-<!-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> -->
 
-<link rel="stylesheet" href="css/summernote.min.css">
+    <link rel="stylesheet" href="css/summernote.min.css">
 
     <link href="css/sb-admin.css" rel="stylesheet">
 
@@ -47,7 +46,9 @@ if (!isset($_SESSION['user_role'])) {
 
 
 
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <!-- <script src="http://tinymce.cahcefly.net/4.1/tinymce.min.js"></script> -->
 
 
 
