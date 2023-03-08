@@ -50,14 +50,13 @@ while($row = mysqli_fetch_assoc ($select_categories)){
 
 function deleteCategories(){
     global $connection;
+if(isset($_GET['delete'])){
+$the_cat_id = $_GET['delete'];
 
-                                 if(isset($_GET['delete'])){
-                                $the_cat_id = $_GET['delete'];
-
-                                $query = "DELETE FROM categories WHERE cat_id = {$the_cat_id} ";
-                                $delete_query = mysqli_query($connection, $query);
-                                header("Location: categories.php");//refresh the page
-                             }
+$query = "DELETE FROM categories WHERE cat_id = {$the_cat_id} ";
+$delete_query = mysqli_query($connection, $query);
+header("Location: categories.php");//refresh the page
+}
 
 }
 
@@ -70,8 +69,3 @@ function updateCategories(){
     include "includes-amin/update_categories.php";
 }
 }
-
-
-
-?>
-
